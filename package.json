@@ -15,6 +15,7 @@
     "next-sanity": "^9.8.46",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-hot-toast": "^2.5.2",
     "react-icons": "^5.5.0",
     "sanity": "^3.72.1",
     "styled-components": "^6.1.14"

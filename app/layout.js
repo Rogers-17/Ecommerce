@@ -1,7 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";  // Import Navbar component
-import Footer from "./components/Footer";  // Import Footer component
+import { Toaster } from "react-hot-toast";
+import Navbar from "./components/Navbar";  
+import Footer from "./components/Footer";  
+import { StateContext } from "@/context/StateContext"; // FIXED: Import StateProvider
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,20 +24,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {/* Navbar */}
-        <header>
-          <Navbar />
-        </header>
+        <StateContext>  {/* FIXED: Wrap the app with StateProvider */}
+          {/* Navbar */}
+          <header>
+            <Navbar />
+          </header>
+      
+          {/* Main Content */}
+          <main className="main-container">
+            <Toaster />
+            {children}
+          </main>
 
-        {/* Main Content */}
-        <main className="main-container">
-          {children}
-        </main>
-
-        {/* Footer */}
-        <footer>
-          <Footer />
-        </footer>
+          {/* Footer */}
+          <footer>
+            <Footer />
+          </footer>
+        </StateContext>
       </body>
     </html>
   );
